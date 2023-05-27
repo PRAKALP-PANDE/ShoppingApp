@@ -1,0 +1,7 @@
+install material ui via cmd available on website:
+     npm install @mui/material @emotion/react @emotion/styled
+
+also install @mui/icons-material
+    npm install @mui/icons-material
+
+
