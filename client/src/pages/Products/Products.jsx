@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import "./Products.scss";
 
 const Products = () => {
   return (
-    <div>
+    <div className="products">
       Categories
     </div>
   )
