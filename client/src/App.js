@@ -1,4 +1,3 @@
-import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -9,6 +8,8 @@ import Products from './pages/Products/Products';
 import Product from './pages/Product/Product';
 import Navbar from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
+import "./app.scss"
+
 
 const Layout = () => {
   return (
