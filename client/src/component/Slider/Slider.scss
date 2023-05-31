@@ -2,12 +2,13 @@
     height: calc(100vh - 80px);
     width: 100vw;
     position: relative; 
+    overflow: hidden;
 
     .container{
         width: 300vw;
         height: 100%;
         display: flex;
-        transform: all 1s ease;
+        transition: all 1s ease;
         
         img{
             width: 100vw;
