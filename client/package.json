@@ -15,6 +15,7 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "sass": "^1.62.1",
+    "strapi": "^3.6.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
