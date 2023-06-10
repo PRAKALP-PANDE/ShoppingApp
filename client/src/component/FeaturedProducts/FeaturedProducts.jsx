@@ -1,46 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './FeaturedProducts.scss'
 import Card from '../Card/Card';
+import axios from "axios";
 
 const FeaturedProducts = ({ type }) => {
-    const data = [
-        {
-            id: 1,
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmsW6WkQAMyjSRsG-_eDBrWN9-TnNTpqxUolQ4cFK0dw&usqp=CAU&ec=48600112",
-            img2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_wbpUH2uHcNidiE1LW33JDLkHOPR4Gu-pNDIGKRhimA&usqp=CAU&ec=48600112",
-            title: "Long Sleeve Graphic T-shirt",
-            isNew: true,
-            oldPrice: 19,
-            price: 12,
-        },
-        {
-            id: 2,
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt1B1lWqGo6ImEL486dCDgBDGuulF2ScUY8Q&usqp=CAU",
-            img2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7l-mfEyYBtLrdL4tD7sgMCHOVyadWnuOLAg&usqp=CAU",
-            title: "Long Sleeve Graphic T-shirt",
-            isNew: true,
-            oldPrice: 19,
-            price: 12,
-        },
-        {
-            id: 3,
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6QorXLr7O2hllhZvNTnZL9c4JXlFRFyxPPEodNeZheg&usqp=CAU&ec=48600112",
-            img2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_YRHsIWqqEE_i21fCloCJSiCLzGAQuucvWnX-kuzm0Q&usqp=CAU&ec=48600112",
-            title: "Long Sleeve Graphic T-shirt",
-            isNew: false,
-            oldPrice: 19,
-            price: 12,
-        },
-        {
-            id: 4,
-            img: "https://images.unsplash.com/photo-1589851287595-680777e79fda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjB8NTAzOTA3OHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60",
-            img2: "https://images.unsplash.com/photo-1589742117142-4c08de5aabcf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTl8NTAzOTA3OHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60",
-            title: "Long Sleeve Graphic T-shirt",
-            isNew: false,
-            oldPrice: 19,
-            price: 12,
-        },
-    ];
+
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(
+                    process.env.REACT_APP_API_URL + "/products?populate=*",
+                    {
+                        headers: {
+                            Authorization: "bearer " + process.env.REACT_APP_API_TOKEN,
+                        },
+                    }
+                );
+                setData(res.data.data)
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, [])
+
     return (
         <div className="featuredProducts">
             <div className="top">
@@ -48,8 +33,8 @@ const FeaturedProducts = ({ type }) => {
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum nemo, blanditiis nihil deleniti eius saepe? Dolorum nostrum, nulla aspernatur maiores quae reiciendis aliquam modi odit unde ratione. Vero quae delectus ea distinctio!</p>
             </div>
             <div className="bottom">
-                {data.map(item=>(
-                    <Card item={item} key={item.id}/>
+                {data.map(item => (
+                    <Card item={item} key={item.id} />
                 ))}
             </div>
         </div>
